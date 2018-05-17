@@ -7,11 +7,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HelloWorldController {
 	
-	@RequestMapping("/hello")  //处理URL路径中以/hello开头的所有请求： 包括 /hello/* 和 /hello.html
+	
+	@RequestMapping("/index")  //处理URL路径中以/index开头的所有请求： 包括 /index/* 和 /index.html
 	public ModelAndView helloWorld() {
 
 		String message = "Hello Spring MVC";
-		return new ModelAndView("hello", "message", message);
+		return new ModelAndView("index", "message", message);
 	}
 	
 }
