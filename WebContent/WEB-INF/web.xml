@@ -19,7 +19,7 @@
   
   <servlet-mapping>
   <servlet-name>springMvcNext</servlet-name>
-  <url-pattern>/</url-pattern>
+  <url-pattern>/</url-pattern> <!-- 拦截所有请求，包括静态资源 ，解决办法:在springmvc.xml中添加静态资源的映射-->
   </servlet-mapping>
  
 </web-app>
