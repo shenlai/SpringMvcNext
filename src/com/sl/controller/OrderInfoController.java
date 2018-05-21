@@ -2,6 +2,7 @@ package com.sl.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -53,11 +54,23 @@ public class OrderInfoController {
 	public ModelAndView Consumes(String orderNumber) {
 		return new ModelAndView("order/info", "message", orderNumber);
 	}
-	
-	    // 示例8 produces 限定返回数据application/json
-		@RequestMapping(value = "produces", method = RequestMethod.GET, produces = "application/json")
-		public ModelAndView Produces(String orderNumber) {
-			return new ModelAndView("order/info", "message", orderNumber);
-		}
+
+	// 示例9 produces 限定返回数据application/json
+	@RequestMapping(value = "produces", method = RequestMethod.GET, produces = "application/json")
+	public ModelAndView Produces(String orderNumber) {
+		return new ModelAndView("order/info", "message", orderNumber);
+	}
+
+	// 示例10 带占位符的URL
+	@RequestMapping(value = "order*", method = RequestMethod.GET)
+	public ModelAndView OrderInfo4(String orderNumber) {
+		return new ModelAndView("order/info", "message", "OrderInfo4");
+	}
+
+	// 示例10 带占位符的URL
+	@RequestMapping(value = "user/{userId}/order/{orderNumber}", method = RequestMethod.GET)
+	public ModelAndView OrderInfo5(@PathVariable int userId, @PathVariable String orderNumber) {
+		return new ModelAndView("order/info", "message", "userid:" + userId + " orderNumber:" + orderNumber);
+	}
 
 }
