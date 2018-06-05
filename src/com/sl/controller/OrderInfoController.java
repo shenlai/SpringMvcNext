@@ -14,7 +14,7 @@ public class OrderInfoController {
 	// Ê¾Àý1
 	@RequestMapping("orderinfo")
 	public ModelAndView OrderInfo1() {
-
+        System.out.println("in  hander");
 		return new ModelAndView("order/info", "message", "OrderInfo");
 	}
 

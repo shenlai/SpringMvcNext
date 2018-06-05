@@ -4,6 +4,6 @@
 	<title>Spring MVC </title>
 </head>
 <body>
-产品信息:${message}
+自定义视图product/myview
 </body>
 </html>

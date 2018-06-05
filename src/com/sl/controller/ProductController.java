@@ -136,12 +136,42 @@ public class ProductController {
 	    @RequestMapping("info10")
 	    public String productInfo10(Model model)
 	    {
-	    	model.addAttribute("message", "productInfo8");
+	    	model.addAttribute("message", "productInfo10");
 	        return "product/detail";
 	    }
 	
 	/************************* 转发与重定向  **************************************/
+	 //1 <mvc:view-controller>标签
 	    
-	    
+	//2 自定义视图
+	@RequestMapping("myview")
+	public String myView() {
+		System.out.println("自定义是视图");
+		
+		//return "product/myView";  //失败
+		return "myView";  // beanName  将MyView中render函数response.getWriter().println("view");输出到页面
+	}
+	
+	//3 重定向
+	//只要字符串中以forward或者redirect开头，那么springMVC就会把它解析成关键字，然后进行相应的转发，或者重定向操作
+	
+	
+	@RequestMapping("redirecttest")
+	public String redirecttest(Model model) {
+		 model.addAttribute("redirectparas", "test redirect");  //带参数跳转
+		 return "redirect:/product/info10";
+	}
+	
+	@RequestMapping("forwardtest")
+    public String forwardtest(Model model){
+		model.addAttribute("forwardparas", "test forward");  //带参数跳转
+		 return "redirect:/product/info10";
+    }
+	
+	
+	/***************数据验证**************************************************************/
+	
+	
+	
 
 }

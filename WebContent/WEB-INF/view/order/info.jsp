@@ -4,6 +4,7 @@
 	<title>Spring MVC </title>
 </head>
 <body>
-订单详情:${message}
+<!-- 订单详情:${message} -->
+订单详情
 </body>
 </html>

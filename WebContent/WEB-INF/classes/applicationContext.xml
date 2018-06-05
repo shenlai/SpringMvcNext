@@ -10,6 +10,7 @@
 
     <!-- 包扫描器  标签将用于激活Spring MVC注释扫描功能，允许使用@Controller和@RequestMapping等注释。-->
 	<context:component-scan base-package="com.sl.controller" />
+	<context:component-scan base-package="com.sl.view" />
 	
 	<!-- 注解驱动 -->
 	<mvc:annotation-driven />
@@ -20,6 +21,23 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
+	<!-- https://www.cnblogs.com/caoyc/p/5637894.html  <mvc:view-controller>标签-->
+	 <!-- 配置直接进行转发的页面，无须进入handler方法 -->
+    <mvc:view-controller path="home" />
+    <mvc:view-controller path="order/info" />
+    
+    
+
+	<!-- 自定义视图解析器:  BeanNameViewResolver:根据视图名称解析视图-->
+
+     <!-- <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+        <property name="order" value="1"></property>
+     </bean>
+      -->
+
+    
+
+    
     
 	
 	
