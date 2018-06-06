@@ -11,7 +11,7 @@
 	<!-- 包扫描器 标签将用于激活Spring MVC注释扫描功能，允许使用@Controller和@RequestMapping等注释。 -->
 	<context:component-scan base-package="com.sl.controller" />
 	<context:component-scan base-package="com.sl.view" />
-	<!-- <context:component-scan base-package="com.sl.interceptors" /> -->
+	<context:component-scan base-package="com.sl.exception" />
 
 
 	<!-- 注解驱动 -->
