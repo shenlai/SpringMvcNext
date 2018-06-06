@@ -8,37 +8,56 @@
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- 包扫描器  标签将用于激活Spring MVC注释扫描功能，允许使用@Controller和@RequestMapping等注释。-->
+	<!-- 包扫描器 标签将用于激活Spring MVC注释扫描功能，允许使用@Controller和@RequestMapping等注释。 -->
 	<context:component-scan base-package="com.sl.controller" />
 	<context:component-scan base-package="com.sl.view" />
-	
+	<!-- <context:component-scan base-package="com.sl.interceptors" /> -->
+
+
 	<!-- 注解驱动 -->
 	<mvc:annotation-driven />
-	
+
 	<!-- 配置视图解析器 -->
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"  id="internalResourceViewResolver">
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		id="internalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/view/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	
-	<!-- https://www.cnblogs.com/caoyc/p/5637894.html  <mvc:view-controller>标签-->
-	 <!-- 配置直接进行转发的页面，无须进入handler方法 -->
-    <mvc:view-controller path="home" />
-    <mvc:view-controller path="order/info" />
-    
-    
 
-	<!-- 自定义视图解析器:  BeanNameViewResolver:根据视图名称解析视图-->
+	<!-- https://www.cnblogs.com/caoyc/p/5637894.html <mvc:view-controller>标签 -->
+	<!-- 配置直接进行转发的页面，无须进入handler方法 -->
+	<mvc:view-controller path="home" />
+	<mvc:view-controller path="order/info" />
 
-     <!-- <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
-        <property name="order" value="1"></property>
-     </bean>
-      -->
 
-    
 
-    
-    
-	
-	
+	<!-- 配置自定义的拦截器 -->
+	<!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根节点下则拦截所有的请求 -->
+	<!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->
+	<mvc:interceptors>
+		<!-- 这个bean就是自定义的一个类，拦截器 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/order/*" />
+			<bean class="com.sl.interceptors.TestInterceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/order/*" />
+			<bean class="com.sl.interceptors.TestOrderInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+
+
+	<!-- 自定义视图解析器: BeanNameViewResolver:根据视图名称解析视图 -->
+
+	<!-- <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"> 
+		<property name="order" value="1"></property> </bean> -->
+
+
+
+
+
+
+
 </beans>
